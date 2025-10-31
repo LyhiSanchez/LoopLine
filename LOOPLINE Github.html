@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <style>
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    flex: 1;
+  }
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- GANTI JUDUL HALAMAN DI SINI --></title>
+    <!-- Memuat Tailwind CSS dari CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menggunakan font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Warna latar belakang lembut */
+        }
+        /* GANTI KODE WARNA UTAMA BISNIS ANDA DI SINI */
+        .text-loopline-primary {
+            color: #ff69b4; /* Pink cerah, mewakili aksesoris anak muda/estetik */
+        }
+        .bg-loopline-primary {
+            background-color: #ff69b4;
+        }
+        .shadow-loopline {
+            box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.3), 0 5px 10px -5px rgba(255, 105, 180, 0.15);
+        }
+        .charm-scroll-area::-webkit-scrollbar {
+            display: none;
+        }
+        .charm-scroll-area {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(255, 105, 180, 0.5), 0 2px 4px -1px rgba(255, 105, 180, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-extrabold text-gray-800">
+                <!-- GANTI NAMA BRAND DI SINI -->
+                <span class="text-loopline-primary">Loop</span>Line
+            </h1>
+            <button id="cta-button-mobile" class="bg-loopline-primary text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-pink-600 transition duration-300 sm:hidden">
+                <!-- GANTI TEKS TOMBOL CTA (MOBILE) DI SINI -->
+                Pesan Sekarang
+            </button>
+            <button id="cta-button-desktop" class="hidden bg-loopline-primary text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition duration-300 sm:block">
+                <!-- GANTI TEKS TOMBOL CTA (DESKTOP) DI SINI -->
+                Custom Bag Charm (PO)
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-gray-700 body-font py-16 md:py-24 bg-white">
+        <div class="container mx-auto flex flex-col items-center px-5">
+            <div class="lg:w-2/3 w-full text-center">
+                <h2 class="title-font sm:text-5xl text-4xl mb-4 font-extrabold text-gray-900 leading-tight">
+                    <!-- GANTI SLOGAN UTAMA DI SINI -->
+                    <span class="text-loopline-primary">CREATE YOUR CHARM</span>
+                    <br class="hidden sm:inline">
+                    Aksesoris Custom Personalize Your Style!
+                </h2>
+                <p class="mb-8 leading-relaxed text-lg text-gray-600 font-medium">
+                    <!-- GANTI DESKRIPSI SINGKAT PRODUK DI SINI -->
+                    Ciptakan Bag Charm unik sesuai kepribadianmu. Pilih warna, Charm, dan nama. Sesuai Keinginanmmu
+                </p>
+                <div class="flex justify-center">
+                    <button class="btn-primary bg-loopline-primary text-white font-bold py-3 px-8 rounded-full text-lg shadow-loopline transition duration-300" onclick="scrollToSection('produk')">
+                        <!-- GANTI TEKS TOMBOL HERO DI SINI -->
+                        Lihat Produk & Varian
+                    </button>
+                </div>
+            </div>
+            <!-- Placeholder Visual: Charm/Aksesoris -->
+            <div class="mt-12 w-full max-w-lg">
+                <div class="bg-pink-100 p-6 rounded-xl border-4 border-dashed border-pink-300 flex justify-center items-center h-48">
+                    <!-- BISA DIGANTI DENGAN GAMBAR/LOGO ASLI JIKA ADA -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-loopline-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="7" width="18" height="15" rx="2" ry="2"></rect>
+                        <path d="M17 10v-3a5 5 0 0 0-10 0v3"></path>
+                        <circle cx="12" cy="18" r="3" fill="#ff69b4" stroke="none"></circle>
+                        <path d="M12 21v1" stroke="#ff69b4" stroke-dasharray="3 3"></path>
+                    </svg>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-2">Desain estetik, dibuat khusus untukmu.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keunggulan Produk Section -->
+    <section id="produk" class="text-gray-700 body-font bg-gray-50 py-16 md:py-20">
+        <div class="container mx-auto px-5">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Kenapa Harus Loopline? <!-- GANTI JUDUL DI SINI --></h3>
+            <div class="flex flex-wrap text-center">
+
+                <!-- Keunggulan 1: Custom -->
+                <div class="p-4 md:w-1/3 w-full">
+                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
+                        <!-- GANTI ICON JIKA PERLU -->
+                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l-2.5 2.5 4 4 2.5-2.5a2.41 2.41 0 0 0-4-4z"/><path d="M22 15s-.5-2-2-2-4 2-4 2"/><path d="M17 19h-5l-5-5-2-8 5 2 8 2 2 5z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Konsep Custom Eksklusif <!-- GANTI JUDUL KEUNGGULAN 1 --></h4>
+                        <p class="leading-relaxed text-gray-600">Pilih sendiri tali macrame, charm, dan manik huruf (nama/inisial) sesuai selera dan gayamu! <!-- GANTI DESKRIPSI KEUNGGULAN 1 --></p>
+                    </div>
+                </div>
+
+                <!-- Keunggulan 2: Desain Kekinian -->
+                <div class="p-4 md:w-1/3 w-full">
+                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
+                        <!-- GANTI ICON JIKA PERLU -->
+                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Estetik & Ikuti Tren <!-- GANTI JUDUL KEUNGGULAN 2 --></h4>
+                        <p class="leading-relaxed text-gray-600">Desain Estetik, cocok untuk mempercantik tas, kunci, atau barang pribadi agar terlihat lebih lucu dan estetik. <!-- GANTI DESKRIPSI KEUNGGULAN 2 --></p>
+                    </div>
+                </div>
+
+                <!-- Keunggulan 3: Affordable -->
+                <div class="p-4 md:w-1/3 w-full">
+                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
+                        <!-- GANTI ICON JIKA PERLU -->
+                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H7l-2 4h14l-2 4h-4"/><path d="M5 9h14M7 13h10"/></svg>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Harga Terjangkau <!-- GANTI JUDUL KEUNGGULAN 3 --></h4>
+                        <p class="leading-relaxed text-gray-600">Dengan harga jual terjangkau (Rp15.000/unit), produk ini sangat Affordable kantong pelajar dan mahasiswa. <!-- GANTI DESKRIPSI KEUNGGULAN 3 --></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Varian & Contoh Produk Section -->
+    <section class="text-gray-700 body-font py-16 md:py-20">
+        <div class="container mx-auto px-5">
+            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Contoh Varian Favorit <!-- GANTI JUDUL DI SINI --></h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 charm-scroll-area overflow-x-auto pb-4">
+
+                <!-- Produk Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
+                    <div class="w-full h-32 bg-purple-200 rounded-lg flex items-center justify-center mb-3">
+                        <span class="text-5xl">🦄 <!-- GANTI DENGAN EMOJI/ICON PRODUK 1 --></span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Unicorn Dream <!-- GANTI NAMA PRODUK 1 --></h4>
+                    <p class="text-sm text-gray-500 mb-2">Tali ungu & charm karakter <!-- GANTI KETERANGAN PRODUK 1 --></p>
+                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 1 --></p>
+                </div>
+
+                <!-- Produk Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
+                    <div class="w-full h-32 bg-green-200 rounded-lg flex items-center justify-center mb-3">
+                        <span class="text-5xl">🌿 <!-- GANTI DENGAN EMOJI/ICON PRODUK 2 --></span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Nature Vibes <!-- GANTI NAMA PRODUK 2 --></h4>
+                    <p class="text-sm text-gray-500 mb-2">Tali hijau & charm lucu  <!-- GANTI KETERANGAN PRODUK 2 --></p>
+                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 2 --></p>
+                </div>
+
+                <!-- Produk Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
+                    <div class="w-full h-32 bg-yellow-200 rounded-lg flex items-center justify-center mb-3">
+                        <span class="text-5xl">🌞 <!-- GANTI DENGAN EMOJI/ICON PRODUK 3 --></span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Sunny Initials <!-- GANTI NAMA PRODUK 3 --></h4>
+                    <p class="text-sm text-gray-500 mb-2">Tali kuning & manik nama <!-- GANTI KETERANGAN PRODUK 3 --></p>
+                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 3 --></p>
+                </div>
+
+                <!-- Produk Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
+                    <div class="w-full h-32 bg-red-200 rounded-lg flex items-center justify-center mb-3">
+                        <span class="text-5xl">❤️ <!-- GANTI DENGAN EMOJI/ICON PRODUK 4 --></span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Couple Set <!-- GANTI NAMA PRODUK 4 --></h4>
+                    <p class="text-sm text-gray-500 mb-2">Spesial 2 gantungan + bonus <!-- GANTI KETERANGAN PRODUK 4 --></p>
+                    <p class="text-xl font-bold text-loopline-primary">Rp30.000 <!-- GANTI HARGA PRODUK 4 --></p>
+                </div>
+
+            </div>
+            <div class="text-center mt-10">
+                <button class="btn-primary bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-full text-lg hover:bg-loopline-primary hover:text-white transition duration-300" onclick="alert('Silahkan langsung Klik Chat Admin Yaa')">
+                    <!-- GANTI TEKS TOMBOL DI SINI -->
+                    Mulai Desain Charm-mu!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proses Pemesanan (Call to Action) Section -->
+    <section class="bg-loopline-primary py-16 md:py-20 text-white">
+        <div class="container mx-auto px-5 text-center">
+            <h3 class="text-3xl font-bold mb-4">Bagaimana Cara Pesan? <!-- GANTI JUDUL DI SINI --></h3>
+            <p class="text-lg mb-10 opacity-90">Kami menggunakan sistem Pre-Order (PO) untuk menjamin kualitas custom. <!-- GANTI SUBJUDUL DI SINI --></p>
+
+            <div class="flex flex-wrap justify-center -m-4">
+
+                <!-- Langkah 1 -->
+                <div class="p-4 md:w-1/4 w-1/2">
+                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
+                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">1.</span>
+                        <p class="font-semibold">Pilih Custom <!-- GANTI TEKS LANGKAH 1 --></p>
+                        <p class="text-sm mt-1">Tentukan desain, warna, dan charm yang kamu mau. <!-- GANTI DESKRIPSI LANGKAH 1 --></p>
+                    </div>
+                </div>
+
+                <!-- Langkah 2 -->
+                <div class="p-4 md:w-1/4 w-1/2">
+                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
+                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">2.</span>
+                        <p class="font-semibold">Proses PO <!-- GANTI TEKS LANGKAH 2 --></p>
+                        <p class="text-sm mt-1">Kami proses perakitan manual (handmade) dalam 1-3 hari. <!-- GANTI DESKRIPSI LANGKAH 2 --></p>
+                    </div>
+                </div>
+
+                <!-- Langkah 3 -->
+                <div class="p-4 md:w-1/4 w-1/2">
+                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
+                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">3.</span>
+                        <p class="font-semibold">Pengambilan (COD) <!-- GANTI TEKS LANGKAH 3 --></p>
+                        <p class="text-sm mt-1">Ambil di GBC PNJ (atau area COD lain yang disepakati). <!-- GANTI DESKRIPSI LANGKAH 3 --></p>
+                    </div>
+                </div>
+
+                <!-- Lokasi -->
+                <div class="p-4 md:w-1/4 w-1/2">
+                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
+                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">📍</span>
+                        <p class="font-semibold">Lokasi Utama <!-- GANTI JUDUL LOKASI --></p>
+                        <p class="text-sm mt-1">Green Business Center (GBC) Gedung Administrasi Niaga, PNJ. <!-- GANTI DETAIL LOKASI --></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <p class="text-xl font-semibold mb-4">Siap bikin charm unikmu? <!-- GANTI CALL TO ACTION --></p>
+                <a href="https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~" target="_blank" class="btn-primary inline-flex items-center bg-white text-loopline-primary font-bold py-3 px-8 rounded-full text-lg shadow-xl hover:bg-pink-100 transition duration-300">
+                    <!-- GANTI LINK WA DI ATAS & TEKS TOMBOL DI BAWAH -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    Chat Admin (Pesan via WhatsApp)
+                </a>
+                <p class="text-sm mt-3 opacity-80">Kami melayani ramah dan fast response (IF NOT BUSY.. Hopefully) <!-- GANTI SUB TEKS --></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-gray-600 body-font bg-gray-800 text-white">
+        <div class="container mx-auto px-5 py-8">
+            <div class="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-bold text-lg text-white mb-3">LOOPLINE <!-- GANTI NAMA BRAND DI SINI --></h2>
+                    <nav class="list-none mb-10">
+                        <li><p class="text-sm text-gray-400">Usaha Aksesoris Custom (Bag Charm). <!-- GANTI DESKRIPSI --></p></li>
+                        <li><p class="text-sm text-gray-400 mt-2">Visi: Menjadi usaha aksesoris kreatif dan kekinian yang digemari anak muda. <!-- GANTI VISI --></p></li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">KONTAK <!-- GANTI JUDUL KOLOM --></h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <p class="text-gray-400 hover:text-loopline-primary transition duration-200">Instagram: @loopline.charm <!-- GANTI AKUN IG --></p>
+                        </li>
+                        <li>
+                            <p class="text-gray-400 hover:text-loopline-primary transition duration-200">WhatsApp: 0895-2546-5737<!-- GANTI NOMOR WA --></p>
+                        </li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">PRODUK <!-- GANTI JUDUL KOLOM --></h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <p class="text-gray-400">Bag Charm Custom <!-- GANTI NAMA PRODUK --></p>
+                        </li>
+                        <li>
+                            <p class="text-gray-400">Dengan warna tali costum <!-- GANTI NAMA PRODUK --></p>
+                        </li>
+                        <li>
+                            <p class="text-gray-400">Charm & Manik Nama <!-- GANTI NAMA PRODUK --></p>
+                        </li>
+                    </nav>
+                </div>
+                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">PEMBAYARAN <!-- GANTI JUDUL KOLOM --></h2>
+                    <nav class="list-none mb-10">
+                        <li>
+                            <p class="text-gray-400">QRIS <!-- GANTI METODE --></p>
+                        </li>
+                        <li>
+                            <p class="text-gray-400">Cash On Delivery (COD PNJ) <!-- GANTI METODE --></p>
+                        </li>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-900">
+            <div class="container mx-auto py-4 px-5">
+                <p class="text-gray-500 text-sm text-center sm:text-left">© 2025 Loopline — Dibuat oleh ABT3D Kelompok 8 <!-- GANTI COPYRIGHT --></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk scroll ke bagian produk
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 70, // Kurangi tinggi header
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Menambahkan event listener ke tombol CTA di header
+        // GANTI LINK WA DI BAWAH INI DENGAN NOMOR LOOPLINE YANG BENAR
+        const waLink = 'https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~'; 
+        
+        document.getElementById('cta-button-mobile').addEventListener('click', function() {
+            scrollToSection('produk');
+        });
+        document.getElementById('cta-button-desktop').addEventListener('click', function() {
+            window.open(waLink, '_blank');
+        });
+
+        // Event listener untuk tombol CTA di proses pemesanan (paling bawah)
+        document.querySelector('a[href^="https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~"]').href = waLink;
+    </script>
+</body>
+</html>
