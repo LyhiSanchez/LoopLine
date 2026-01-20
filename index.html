@@ -3,76 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LoopLine - Premium Liquid Glass</title>
+  <title>LoopLine - Apple Liquid Glass Edition</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
     :root {
-      --glass-bg: rgba(255, 255, 255, 0.45);
-      --glass-border: rgba(255, 255, 255, 0.6);
-      --glass-shine: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
-      --accent-pink: #ff3e8a;
-      --accent-blue: #7dd3fc;
-      --accent-purple: #c084fc;
-      --text-main: #1e293b;
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --glass-highlight: rgba(255, 255, 255, 0.25);
+      --accent-pink: #ff6bc9;
+      --accent-blue: #64d2ff;
+      --accent-purple: #b191ff;
+      --text-main: rgba(255, 255, 255, 0.9);
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --bg-dark: #0a0a14;
+      --bg-deep: #050510;
     }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: #f0f4f8;
-      background-image: 
-        radial-gradient(at 0% 0%, hsla(338,100%,90%,1) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(202,100%,90%,1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(270,100%,90%,1) 0, transparent 50%);
-      background-attachment: fixed;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
       color: var(--text-main);
       overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* --- GLASS NAVIGATION --- */
+    /* Liquid Background Animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 201, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(100, 210, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(177, 145, 255, 0.1) 0%, transparent 50%);
+      z-index: -2;
+      animation: liquid-move 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes liquid-move {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-2%, 2%) scale(1.05); }
+      66% { transform: translate(2%, -1%) scale(0.98); }
+      100% { transform: translate(-1%, -2%) scale(1.02); }
+    }
+
+    /* --- APPLE STYLE GLASS NAVIGATION --- */
     header {
-      background: rgba(255, 255, 255, 0.3);
-      backdrop-filter: blur(25px) saturate(180%);
-      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      background: rgba(10, 10, 20, 0.4);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
       position: fixed;
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 95%;
-      max-width: 1100px;
+      width: 92%;
+      max-width: 1200px;
       z-index: 1000;
-      border-radius: 25px;
+      border-radius: 24px;
       border: 1px solid var(--glass-border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 var(--glass-highlight);
+      overflow: hidden;
     }
 
     .nav-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.6rem 1.5rem;
+      padding: 1rem 2rem;
     }
 
     .logo {
-      font-weight: 800;
-      font-size: 1.4rem;
+      font-weight: 900;
+      font-size: 1.8rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--accent-pink);
+      gap: 0.8rem;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
     }
 
-    .logo span {
-      background: linear-gradient(135deg, var(--accent-pink), #ff87bd);
-      color: white;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.8rem;
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-pink), transparent);
+      border-radius: 2px;
     }
 
+    /* Glass Navigation Items */
     nav ul {
       display: flex;
       list-style: none;
@@ -82,54 +120,87 @@
       padding: 0;
     }
 
-    /* Glass Buttons in Nav - CLEAN VERSION (No Border) */
     nav a {
-      padding: 0.5rem 1rem;
-      border-radius: 15px;
+      padding: 0.7rem 1.4rem;
+      border-radius: 16px;
       font-weight: 600;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-      text-decoration: none; /* Hapus garis bawah bawaan link */
-      /* Border dihapus agar lebih clean */
+      font-size: 0.9rem;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+      text-decoration: none;
+      color: var(--text-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+      transition: left 0.6s;
     }
 
     nav a:hover {
-      background: rgba(255, 255, 255, 0.6);
-      color: var(--accent-pink);
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+
+    nav a:hover::before {
+      left: 100%;
     }
 
     .btn-nav-wa {
-      background: var(--accent-pink);
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
       color: white !important;
-      border-radius: 15px;
-      padding: 0.6rem 1.2rem !important;
-      box-shadow: 0 4px 15px rgba(255, 62, 138, 0.3);
+      border-radius: 16px;
+      padding: 0.8rem 1.8rem !important;
+      box-shadow: 
+        0 10px 30px rgba(255, 107, 201, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-nav-wa:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 
+        0 15px 40px rgba(255, 107, 201, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     /* --- HERO SECTION --- */
     .hero {
-      padding: 160px 1rem 80px;
+      padding: 180px 2rem 100px;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
     .hero-inner {
-      max-width: 1100px;
+      max-width: 1200px;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
       align-items: center;
     }
 
+    /* Liquid Glass Hero Card */
     .hero-content {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
       border: 1px solid var(--glass-border);
-      padding: 3rem;
-      border-radius: 40px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+      padding: 4rem;
+      border-radius: 48px;
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
       position: relative;
       overflow: hidden;
     }
@@ -137,243 +208,664 @@
     .hero-content::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 100%;
-      background: var(--glass-shine);
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.05) 50%, 
+        transparent 70%
+      );
+      animation: liquid-shine 8s linear infinite;
       pointer-events: none;
     }
 
-    .hero-title {
-      font-size: clamp(2.5rem, 5vw, 3.8rem);
-      line-height: 1.1;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes liquid-shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
 
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #ffffff 0%, #b8b8b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    /* Liquid Image Container */
     .hero-img {
       border-radius: 40px;
       overflow: hidden;
-      border: 2px solid var(--glass-border);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-      transform: rotate(2deg);
+      border: 1px solid var(--glass-border);
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 var(--glass-highlight);
+      transform: perspective(1000px) rotateY(-5deg) rotateX(3deg);
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      position: relative;
     }
 
-    .hero-img img { width: 100%; display: block; transition: 0.5s; }
-    .hero-img:hover img { transform: scale(1.05) rotate(-2deg); }
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 60%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-img img { 
+      width: 100%; 
+      display: block; 
+      transition: transform 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .hero-img:hover {
+      transform: perspective(1000px) rotateY(0) rotateX(0) scale(1.03);
+    }
+
+    .hero-img:hover img { 
+      transform: scale(1.1); 
+    }
 
     /* --- LIQUID GLASS CARDS --- */
-    section { padding: 5rem 1rem; }
-    .section-wrapper { max-width: 1100px; margin: 0 auto; }
+    section { 
+      padding: 6rem 2rem; 
+      position: relative;
+    }
+    
+    .section-wrapper { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    }
     
     .sec-title { 
-      font-size: 2.5rem; 
-      font-weight: 800; 
+      font-size: 3.5rem; 
+      font-weight: 900; 
       text-align: center; 
-      margin-bottom: 0.5rem; 
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
     }
     
     .sec-sub { 
       text-align: center; 
-      color: #64748b; 
-      margin-bottom: 3.5rem; 
-      max-width: 600px; 
+      color: var(--text-secondary); 
+      margin-bottom: 4rem; 
+      max-width: 700px; 
       margin-left: auto; 
-      margin-right: auto; 
+      margin-right: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
 
-    /* FLEX LAYOUT untuk Katalog & Custom agar 'Memenuhi' */
+    /* Liquid Glass Cards */
     .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center; /* Menengahkan item jika ganjil */
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
     }
 
-    .custom-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    
     .card {
       background: var(--glass-bg);
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
       border: 1px solid var(--glass-border);
-      border-radius: 30px;
+      border-radius: 32px;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
       position: relative;
-      /* Logic Flex agar memenuhi */
-      flex: 1 1 260px; /* Base width 260px, bisa mengecil/membesar */
-      max-width: 350px; /* Batas maksimal agar tidak terlalu lebar */
+      min-height: 380px;
       display: flex;
       flex-direction: column;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      border-radius: inherit;
+      pointer-events: none;
     }
 
     .card::after {
       content: '';
       position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: rotate(45deg);
-      transition: 0.6s;
-      pointer-events: none;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        45deg,
+        var(--accent-pink),
+        var(--accent-blue),
+        var(--accent-purple)
+      );
+      border-radius: 34px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s;
     }
 
     .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      background: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      transform: translateY(-12px) scale(1.03);
+      border-color: var(--glass-highlight);
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.4),
+        0 0 0 1px var(--glass-highlight);
     }
 
     .card:hover::after {
-      left: 100%;
-      top: 100%;
+      opacity: 1;
+      animation: border-glow 2s linear infinite;
     }
 
-    /* GAMBAR INSTAGRAM STYLE (SQUARE / LUAS) */
+    @keyframes border-glow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Card Image Styling */
     .card img { 
       width: 100%; 
-      aspect-ratio: 1 / 1; /* Persegi Sempurna */
+      height: 240px;
       object-fit: cover; 
+      object-position: center;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.320, 1);
     }
 
-    .card-body { padding: 1.5rem; text-align: center; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
-    .price { font-weight: 800; color: var(--accent-pink); font-size: 1.2rem; margin: 0.5rem 0 1rem; }
-    
+    .card:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-body { 
+      padding: 2rem; 
+      text-align: center; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h3 { 
+      margin: 0 0 0.5rem; 
+      font-size: 1.4rem; 
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .price { 
+      font-weight: 900; 
+      color: var(--accent-pink); 
+      font-size: 1.5rem; 
+      margin: 1rem 0; 
+      position: relative;
+      display: inline-block;
+    }
+
+    .price::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-pink), transparent);
+      border-radius: 2px;
+    }
+
+    /* Liquid Glass Button */
     .btn-card {
-      width: 100%;
-      background: rgba(255, 62, 138, 0.1);
-      border: 1px solid rgba(255, 62, 138, 0.2);
-      padding: 0.8rem;
-      border-radius: 15px;
-      color: var(--accent-pink);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--glass-border);
+      padding: 1rem;
+      border-radius: 20px;
+      color: var(--text-main);
       font-weight: 700;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
       margin-top: auto;
+      position: relative;
+      overflow: hidden;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s;
     }
 
     .btn-card:hover {
-      background: var(--accent-pink);
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
       color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(255, 107, 201, 0.3);
     }
 
-    /* TOMBOL GLOSSY LIQUID GLASS untuk Call to Action */
+    .btn-card:hover::before {
+      left: 100%;
+    }
+
+    /* Liquid Glossy Button */
     .btn-glossy {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      color: var(--accent-pink) !important;
-      padding: 1.2rem 3rem !important;
-      font-size: 1.1rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(255, 62, 138, 0.15);
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15), 
+        rgba(255, 255, 255, 0.05)
+      );
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main) !important;
+      padding: 1.4rem 4rem !important;
+      font-size: 1.2rem;
+      border-radius: 28px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 var(--glass-highlight);
       position: relative;
       overflow: hidden;
       font-weight: 800;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      text-align: center;
     }
-    
+
+    .btn-glossy::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, 
+        var(--accent-pink), 
+        var(--accent-blue), 
+        var(--accent-purple)
+      );
+      border-radius: 30px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
     .btn-glossy:hover {
-        background: var(--accent-pink);
-        color: white !important;
-        box-shadow: 0 15px 40px rgba(255, 62, 138, 0.4);
-        transform: translateY(-3px);
+      transform: translateY(-4px) scale(1.05);
+      border-color: transparent;
+      color: white !important;
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 107, 201, 0.3);
+    }
+
+    .btn-glossy:hover::after {
+      opacity: 1;
+      animation: liquid-rotate 3s linear infinite;
+    }
+
+    @keyframes liquid-rotate {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
 
     /* --- CATEGORY BADGE --- */
     .badge-liquid {
       display: inline-block;
-      padding: 0.3rem 0.8rem;
-      border-radius: 10px;
-      font-size: 0.7rem;
+      padding: 0.4rem 1rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
       font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      background: rgba(125, 211, 252, 0.2);
-      color: #0369a1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, 
+        rgba(100, 210, 255, 0.2), 
+        rgba(177, 145, 255, 0.2)
+      );
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+      border: 1px solid rgba(100, 210, 255, 0.3);
     }
 
     /* --- STEPS --- */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .steps { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 2.5rem; 
+      margin-top: 4rem;
+    }
+    
     .step-card {
       background: var(--glass-bg);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      padding: 2.5rem;
-      border-radius: 35px;
+      padding: 3rem 2.5rem;
+      border-radius: 40px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--glass-highlight);
+    }
+
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
+      border-radius: 40px 40px 0 0;
+    }
+
     .step-num {
-      width: 50px; height: 50px; background: var(--accent-pink); color: white;
-      border-radius: 18px; display: inline-flex; align-items: center; justify-content: center;
-      font-weight: 800; margin-bottom: 1.5rem; font-size: 1.2rem;
+      width: 70px; 
+      height: 70px; 
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+      color: white;
+      border-radius: 20px; 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center;
+      font-weight: 900; 
+      margin-bottom: 2rem; 
+      font-size: 1.8rem;
+      box-shadow: 0 10px 20px rgba(255, 107, 201, 0.3);
     }
 
     /* --- FOOTER --- */
     footer {
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(5, 5, 16, 0.95);
+      backdrop-filter: blur(40px);
       color: white;
-      padding: 4rem 1rem 2rem;
-      margin-top: 5rem;
-    }
-    .footer-grid { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 3rem; }
-    .footer-brand h2 { margin: 0 0 1rem; font-size: 2rem; }
-    .footer-socials { display: flex; gap: 1.5rem; margin-top: 1.5rem; }
-    .footer-socials a svg { fill: white; width: 28px; opacity: 0.7; transition: 0.3s; }
-    .footer-socials a:hover svg { opacity: 1; transform: scale(1.1); }
-    .footer-bottom { 
-      max-width: 1100px; margin: 3rem auto 0; padding-top: 2rem; 
-      border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.85rem; opacity: 0.6;
+      padding: 5rem 2rem 3rem;
+      margin-top: 6rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* --- POPUP LIQUID THEME --- */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); 
-      backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 9999;
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        var(--glass-highlight), 
+        transparent
+      );
     }
+
+    .footer-grid { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 4rem; 
+    }
+    
+    .footer-brand h2 { 
+      margin: 0 0 1.5rem; 
+      font-size: 2.5rem; 
+      background: linear-gradient(135deg, white, var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-socials { 
+      display: flex; 
+      gap: 1.5rem; 
+      margin-top: 2rem; 
+    }
+    
+    .footer-socials a {
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+    
+    .footer-socials a svg { 
+      fill: white; 
+      width: 24px; 
+      height: 24px;
+      opacity: 0.8; 
+      transition: 0.3s; 
+    }
+    
+    .footer-socials a:hover {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-blue));
+      transform: translateY(-4px) scale(1.1);
+      border-color: transparent;
+    }
+    
+    .footer-socials a:hover svg { 
+      opacity: 1; 
+      transform: scale(1.1); 
+    }
+    
+    .footer-bottom { 
+      max-width: 1200px; 
+      margin: 4rem auto 0; 
+      padding-top: 2.5rem; 
+      border-top: 1px solid rgba(255,255,255,0.1); 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 0.9rem; 
+      opacity: 0.7;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* --- LIQUID MODAL --- */
+    .modal-overlay {
+      position: fixed; 
+      inset: 0; 
+      background: rgba(5, 5, 16, 0.8); 
+      backdrop-filter: blur(30px); 
+      display: none; 
+      align-items: center; 
+      justify-content: center; 
+      z-index: 9999;
+    }
+    
     .modal {
-      background: rgba(255, 255, 255, 0.75); /* Transparan */
-      backdrop-filter: blur(25px); /* Efek Kaca */
-      padding: 2.5rem; 
-      border-radius: 35px; 
-      max-width: 400px; width: 90%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(50px) saturate(200%);
+      padding: 3.5rem; 
+      border-radius: 48px; 
+      max-width: 450px; 
+      width: 90%;
       text-align: center; 
       border: 1px solid var(--glass-border);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 var(--glass-highlight);
+      transform: scale(0.9);
+      opacity: 0;
+      animation: modal-appear 0.4s cubic-bezier(0.23, 1, 0.320, 1) forwards;
     }
-    .modal h3 { color: var(--text-main); margin-top: 0; }
-    .modal-btns { display: flex; gap: 1rem; margin-top: 2rem; }
-    .modal-btns button { flex: 1; padding: 0.8rem; border-radius: 15px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; }
-    .btn-cancel { background: rgba(0,0,0,0.05); color: #555; }
-    .btn-cancel:hover { background: rgba(0,0,0,0.1); }
-    .btn-confirm { background: var(--accent-pink); color: white; box-shadow: 0 5px 15px rgba(255, 62, 138, 0.3); }
-    .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 62, 138, 0.4); }
 
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
+    @keyframes modal-appear {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal h3 { 
+      color: var(--text-main); 
+      margin-top: 0; 
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .modal p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    
+    .modal-btns { 
+      display: flex; 
+      gap: 1rem; 
+      margin-top: 2.5rem; 
+    }
+    
+    .modal-btns button { 
+      flex: 1; 
+      padding: 1.2rem; 
+      border-radius: 20px; 
+      border: none; 
+      font-weight: 700; 
+      cursor: pointer; 
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn-cancel { 
+      background: rgba(255, 255, 255, 0.08); 
+      color: var(--text-secondary);
+      border: 1px solid var(--glass-border);
+    }
+    
+    .btn-cancel:hover { 
+      background: rgba(255, 255, 255, 0.15); 
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
+    
+    .btn-confirm { 
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)); 
+      color: white; 
+      box-shadow: 0 10px 25px rgba(255, 107, 201, 0.4);
+    }
+    
+    .btn-confirm:hover { 
+      transform: translateY(-2px) scale(1.05); 
+      box-shadow: 0 15px 35px rgba(255, 107, 201, 0.6);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-content { padding: 3rem; }
+      .sec-title { font-size: 2.8rem; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { padding: 1rem; }
       nav ul { 
-        position: absolute; top: 80px; left: 0; right: 0; 
-        background: white; padding: 1.5rem; flex-direction: column; 
-        display: none; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        position: fixed; 
+        top: 90px; 
+        left: 2rem; 
+        right: 2rem; 
+        background: rgba(10, 10, 20, 0.95); 
+        backdrop-filter: blur(40px);
+        padding: 2rem; 
+        flex-direction: column; 
+        display: none; 
+        border-radius: 24px; 
+        border: 1px solid var(--glass-border);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        z-index: 1001;
       }
       nav ul.show { display: flex; }
-      .menu-toggle { display: block; background: none; border: none; font-size: 1.8rem; cursor: pointer; }
+      .menu-toggle { 
+        display: block; 
+        background: none; 
+        border: none; 
+        font-size: 2rem; 
+        cursor: pointer; 
+        color: var(--text-main);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+      }
+      .hero { padding: 140px 1rem 60px; }
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+      .footer-grid { flex-direction: column; text-align: center; }
+      .footer-bottom { flex-direction: column; text-align: center; }
     }
+
     .menu-toggle { display: none; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: rgba(10, 10, 20, 0.8);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--accent-pink), var(--accent-blue));
+      border-radius: 10px;
+      border: 2px solid var(--bg-dark);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(var(--accent-blue), var(--accent-purple));
+    }
   </style>
 </head>
 <body>
 
   <header id="top">
     <div class="nav-container">
-      <a href="#top" class="logo"><span>LL</span> LoopLine</a>
+      <a href="#top" class="logo">LoopLine</a>
       <nav>
         <ul id="navMenu">
           <li><a href="#home">Home</a></li>
@@ -391,16 +883,16 @@
   <section id="home" class="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <p style="letter-spacing: 0.2rem; text-transform: uppercase; color: var(--accent-pink); font-weight: 800; font-size: 0.75rem; margin-bottom: 1rem;">Bag Charm • Handmade • Custom</p>
-        <h1 class="hero-title">Make your Charm, Show your Vibe.</h1>
-        <p style="color: #64748b; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">Ciptakan gantungan tas impianmu dengan material premium berkualitas. Pilih warna, bentuk, dan detail sesukamu.</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#katalog" class="btn-nav-wa" style="background: var(--accent-blue); color: #0369a1 !important; box-shadow: 0 4px 15px rgba(125, 211, 252, 0.3);">Lihat Koleksi</a>
-          <button class="btn-card" style="width: auto; padding: 0.6rem 1.5rem;" data-confirm data-url="https://wa.me/6289525465737">Mulai Custom</button>
+        <p style="letter-spacing: 0.3rem; text-transform: uppercase; color: var(--accent-pink); font-weight: 800; font-size: 0.85rem; margin-bottom: 1.5rem; position: relative; z-index: 2;">Liquid Glass • Handmade • Premium</p>
+        <h1 class="hero-title">Make your Charm,<br>Show your Vibe.</h1>
+        <p style="color: var(--text-secondary); font-size: 1.2rem; line-height: 1.7; margin-bottom: 3rem; position: relative; z-index: 2;">Ciptakan gantungan tas impianmu dengan material premium berkualitas. Pilih warna, bentuk, dan detail sesukamu.</p>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; position: relative; z-index: 2;">
+          <a href="#katalog" class="btn-nav-wa" style="background: linear-gradient(135deg, var(--accent-blue), #00b7ff);">Lihat Koleksi</a>
+          <button class="btn-card" style="width: auto; padding: 0.8rem 2.5rem; font-size: 1rem;" data-confirm data-url="https://wa.me/6289525465737">Mulai Custom</button>
         </div>
       </div>
       <div class="hero-img">
-        <img src="canva pink.png" alt="Hero Bagcharm" />
+        <img src="canva pink.png" alt="Hero Bagcharm Liquid Glass" />
       </div>
     </div>
   </section>
@@ -409,15 +901,16 @@
   <section id="katalog">
     <div class="section-wrapper">
       <h2 class="sec-title">Katalog BagCharm</h2>
-      <p class="sec-sub">Pilih varian instan yang sudah kami desain khusus untukmu.</p>
+      <p class="sec-sub">Pilih varian instan yang sudah kami desain khusus untukmu dengan efek liquid glass premium.</p>
       
       <!-- Section 15k -->
-      <h3 style="margin-bottom: 1.5rem; color: var(--accent-pink); border-bottom: 2px solid rgba(255,62,138,0.2); padding-bottom: 0.5rem; display: inline-block;">✦ Premium Collection (Rp15.000)</h3>
-      <div class="card-grid" style="margin-bottom: 4rem;">
+      <h3 style="margin-bottom: 2rem; color: var(--accent-pink); border-left: 4px solid var(--accent-pink); padding-left: 1.5rem; font-size: 1.8rem; font-weight: 800;">✦ Premium Collection (Rp15.000)</h3>
+      <div class="card-grid" style="margin-bottom: 5rem;">
         <article class="card">
           <img src="yellow.png" alt="Flutter Shy" />
           <div class="card-body">
             <h3>Flutter Shy</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Glossy yellow dengan efek liquid</p>
             <p class="price">Rp15.000</p>
             <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Flutter%20Shy">Pesan via WA</button>
           </div>
@@ -426,6 +919,7 @@
           <img src="blue.png" alt="Bubble Gum" />
           <div class="card-body">
             <h3>Bubble Gum</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Glass blue dengan tekstur bubble</p>
             <p class="price">Rp15.000</p>
             <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Bubble%20Gum">Pesan via WA</button>
           </div>
@@ -434,6 +928,7 @@
           <img src="pink.png" alt="Pinky Bliss" />
           <div class="card-body">
             <h3>Pink Bliss</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Pink liquid dengan efek glossy</p>
             <p class="price">Rp15.000</p>
             <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Pinky%20Bliss">Pesan via WA</button>
           </div>
@@ -442,6 +937,7 @@
           <img src="coklat.png" alt="Cleveland" />
           <div class="card-body">
             <h3>Cleveland</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Brown glass dengan efek metalik</p>
             <p class="price">Rp15.000</p>
             <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Cleveland">Pesan via WA</button>
           </div>
@@ -450,6 +946,7 @@
           <img src="byellow.png" alt="Brave Yellow" />
           <div class="card-body">
             <h3>Brave Yellow</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Bright yellow dengan shine effect</p>
             <p class="price">Rp15.000</p>
             <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Brave%20Yellow">Pesan via WA</button>
           </div>
@@ -457,46 +954,51 @@
       </div>
 
       <!-- Section 10k -->
-      <h3 style="margin-bottom: 1.5rem; color: var(--accent-blue); border-bottom: 2px solid rgba(125,211,252,0.4); padding-bottom: 0.5rem; display: inline-block;">✦ Basic Collection (Rp10.000)</h3>
+      <h3 style="margin-bottom: 2rem; color: var(--accent-blue); border-left: 4px solid var(--accent-blue); padding-left: 1.5rem; font-size: 1.8rem; font-weight: 800;">✦ Basic Collection (Rp10.000)</h3>
       <div class="card-grid">
         <article class="card">
           <img src="yellowy.png" alt="Yellowy" />
           <div class="card-body">
             <h3>Yellowy</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Soft yellow dengan glass finish</p>
             <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
-            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Yellowy">Pesan via WA</button>
+            <button class="btn-card" style="background: rgba(100, 210, 255, 0.15);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Yellowy">Pesan via WA</button>
           </div>
         </article>
         <article class="card">
           <img src="bluey.png" alt="Bluey" />
           <div class="card-body">
             <h3>Bluey</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Pastel blue dengan efek liquid</p>
             <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
-            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Bluey">Pesan via WA</button>
+            <button class="btn-card" style="background: rgba(100, 210, 255, 0.15);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Bluey">Pesan via WA</button>
           </div>
         </article>
         <article class="card">
           <img src="pinky.png" alt="Pinky" />
           <div class="card-body">
             <h3>Pinky</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Baby pink dengan glass texture</p>
             <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
-            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Pinky">Pesan via WA</button>
+            <button class="btn-card" style="background: rgba(100, 210, 255, 0.15);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Pinky">Pesan via WA</button>
           </div>
         </article>
         <article class="card">
           <img src="blacky.png" alt="Blacky" />
           <div class="card-body">
             <h3>Blacky</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Black glossy dengan efek liquid</p>
             <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
-            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Blacky">Pesan via WA</button>
+            <button class="btn-card" style="background: rgba(100, 210, 255, 0.15);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Blacky">Pesan via WA</button>
           </div>
         </article>
         <article class="card">
           <img src="browny.png" alt="Browny" />
           <div class="card-body">
             <h3>Browny</h3>
+            <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.95rem;">Warm brown dengan glass effect</p>
             <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
-            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Browny">Pesan via WA</button>
+            <button class="btn-card" style="background: rgba(100, 210, 255, 0.15);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Browny">Pesan via WA</button>
           </div>
         </article>
       </div>
@@ -504,17 +1006,16 @@
   </section>
 
   <!-- CUSTOM SECTION -->
-  <section id="custom" style="background: rgba(255,255,255,0.2);">
+  <section id="custom" style="background: rgba(255, 255, 255, 0.03);">
     <div class="section-wrapper">
-      <h2 class="sec-title">Custom Bagcharm~</h2>
-      <p class="sec-sub">Mix and Match sesukamu untuk hasil yang personal.</p>
+      <h2 class="sec-title">Custom Bagcharm</h2>
+      <p class="sec-sub">Mix and Match sesukamu untuk hasil yang personal dengan efek liquid glass.</p>
 
-      <!-- 1. BENTUK (Re-arranged Layout Flexible) -->
-      <h3 style="margin-bottom: 2rem; border-left: 5px solid var(--accent-pink); padding-left: 1rem;">1. Pilihan Bentuk (Main, Sub, Mini)</h3>
+      <!-- 1. BENTUK -->
+      <h3 style="margin-bottom: 2.5rem; border-left: 5px solid var(--accent-pink); padding-left: 2rem; font-size: 2rem; font-weight: 800;">1. Pilihan Bentuk</h3>
       
-      <p style="font-weight: 700; margin-bottom: 1rem; color: var(--accent-pink);">✦ Main Items (Fokus Utama)</p>
-      <!-- Gunakan class custom-grid agar item melebar jika hanya sedikit -->
-      <div class="custom-grid" style="margin-bottom: 3rem;">
+      <p style="font-weight: 800; margin-bottom: 1.5rem; color: var(--accent-pink); font-size: 1.1rem; letter-spacing: 1px;">✦ Main Items (Fokus Utama)</p>
+      <div class="card-grid" style="margin-bottom: 4rem;">
         <article class="card">
           <img src="model 5.jpg" alt="A1" />
           <div class="card-body"><span class="badge-liquid">Main [A1]</span><h4>Bentuk Love Glossy</h4></div>
@@ -529,49 +1030,48 @@
         </article>
       </div>
 
-      <p style="font-weight: 700; margin-bottom: 1rem; color: var(--accent-purple);">✦ Sub Items (Pendukung)</p>
-      <div class="custom-grid" style="margin-bottom: 3rem;">
+      <p style="font-weight: 800; margin-bottom: 1.5rem; color: var(--accent-purple); font-size: 1.1rem; letter-spacing: 1px;">✦ Sub Items (Pendukung)</p>
+      <div class="card-grid" style="margin-bottom: 4rem;">
         <article class="card">
           <img src="model 3.jpg" alt="B1" />
-          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B1]</span><h4>Accent Beads Small</h4></div>
+          <div class="card-body"><span class="badge-liquid" style="background:linear-gradient(135deg, rgba(177, 145, 255, 0.2), rgba(255, 107, 201, 0.2)); color:var(--accent-purple); border-color:rgba(177, 145, 255, 0.3);">Sub [B1]</span><h4>Accent Beads Small</h4></div>
         </article>
         <article class="card">
           <img src="model 8.jpg" alt="B2" />
-          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B2]</span><h4>Double Orb Bead</h4></div>
+          <div class="card-body"><span class="badge-liquid" style="background:linear-gradient(135deg, rgba(177, 145, 255, 0.2), rgba(255, 107, 201, 0.2)); color:var(--accent-purple); border-color:rgba(177, 145, 255, 0.3);">Sub [B2]</span><h4>Double Orb Bead</h4></div>
         </article>
         <article class="card">
           <img src="model 1.jpg" alt="B3" />
-          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B3]</span><h4>Tri-Bead Glass</h4></div>
+          <div class="card-body"><span class="badge-liquid" style="background:linear-gradient(135deg, rgba(177, 145, 255, 0.2), rgba(255, 107, 201, 0.2)); color:var(--accent-purple); border-color:rgba(177, 145, 255, 0.3);">Sub [B3]</span><h4>Tri-Bead Glass</h4></div>
         </article>
       </div>
 
-      <p style="font-weight: 700; margin-bottom: 1rem; color: #64748b;">✦ Mini Add-ons (Detail Kecil)</p>
-      <div class="custom-grid" style="margin-bottom: 4rem;">
+      <p style="font-weight: 800; margin-bottom: 1.5rem; color: var(--accent-blue); font-size: 1.1rem; letter-spacing: 1px;">✦ Mini Add-ons (Detail Kecil)</p>
+      <div class="card-grid" style="margin-bottom: 4rem;">
         <article class="card">
           <img src="model 4.jpg" alt="C1" />
-          <div class="card-body"><span class="badge-liquid" style="background:#f1f5f9; color:#475569;">Mini [C1]</span><h4>Tiny Drop Charm</h4></div>
+          <div class="card-body"><span class="badge-liquid" style="background:linear-gradient(135deg, rgba(100, 210, 255, 0.2), rgba(177, 145, 255, 0.2)); color:var(--accent-blue); border-color:rgba(100, 210, 255, 0.3);">Mini [C1]</span><h4>Tiny Drop Charm</h4></div>
         </article>
         <article class="card">
           <img src="model 6.jpg" alt="C2" />
-          <div class="card-body"><span class="badge-liquid" style="background:#f1f5f9; color:#475569;">Mini [C2]</span><h4>Small Sparkle</h4></div>
+          <div class="card-body"><span class="badge-liquid" style="background:linear-gradient(135deg, rgba(100, 210, 255, 0.2), rgba(177, 145, 255, 0.2)); color:var(--accent-blue); border-color:rgba(100, 210, 255, 0.3);">Mini [C2]</span><h4>Small Sparkle</h4></div>
         </article>
       </div>
 
-      <!-- 2. CHARM (Restored) -->
-      <h3 style="margin-bottom: 2rem; border-left: 5px solid var(--accent-blue); padding-left: 1rem;">2. Pilihan Charm (Manik/Gantungan)</h3>
+      <!-- 2. CHARM -->
+      <h3 style="margin-bottom: 2.5rem; border-left: 5px solid var(--accent-blue); padding-left: 2rem; font-size: 2rem; font-weight: 800;">2. Pilihan Charm (Manik/Gantungan)</h3>
       <div class="card-grid" style="margin-bottom: 4rem;">
-        <article class="card"><img src="charm 1.jpg" alt="C1" /><div class="card-body"><h4>Charm 1</h4><small>Ungu, Biru, Kuning, Merah, Hijau</small></div></article>
-        <article class="card"><img src="charm 2.jpg" alt="C2" /><div class="card-body"><h4>Charm 2</h4><small>Pink, Biru, Sunny, Ungu (Labubu)</small></div></article>
-        <article class="card"><img src="charm 3.jpg" alt="C3" /><div class="card-body"><h4>Charm 3</h4><small>Ungu, Biru, Kuning, Pink</small></div></article>
-        <article class="card"><img src="charm 4.jpg" alt="C4" /><div class="card-body"><h4>Charm 4</h4><small>Ungu, Biru, Kuning, Pink</small></div></article>
-        <article class="card"><img src="Charm 5.jpg" alt="C5" /><div class="card-body"><h4>Charm 5</h4><small>Warna Pastel Lengkap</small></div></article>
-        <article class="card"><img src="Charm 6.jpg" alt="C6" /><div class="card-body"><h4>Charm 6</h4><small>Rainbow Selection</small></div></article>
-        <article class="card"><img src="Charm 7.jpg" alt="C7" /><div class="card-body"><h4>Charm 7</h4><small>Soft Tone Candy</small></div></article>
-        <article class="card"><img src="Charm 8.jpg" alt="C8" /><div class="card-body"><h4>Charm 8</h4><small>Glow Glass Variant</small></div></article>
+        <article class="card"><img src="charm 1.jpg" alt="C1" /><div class="card-body"><h4>Charm 1</h4><small style="color: var(--text-secondary);">Ungu, Biru, Kuning, Merah, Hijau</small></div></article>
+        <article class="card"><img src="charm 2.jpg" alt="C2" /><div class="card-body"><h4>Charm 2</h4><small style="color: var(--text-secondary);">Pink, Biru, Sunny, Ungu (Labubu)</small></div></article>
+        <article class="card"><img src="charm 3.jpg" alt="C3" /><div class="card-body"><h4>Charm 3</h4><small style="color: var(--text-secondary);">Ungu, Biru, Kuning, Pink</small></div></article>
+        <article class="card"><img src="charm 4.jpg" alt="C4" /><div class="card-body"><h4>Charm 4</h4><small style="color: var(--text-secondary);">Ungu, Biru, Kuning, Pink</small></div></article>
+        <article class="card"><img src="Charm 5.jpg" alt="C5" /><div class="card-body"><h4>Charm 5</h4><small style="color: var(--text-secondary);">Warna Pastel Lengkap</small></div></article>
+        <article class="card"><img src="Charm 6.jpg" alt="C6" /><div class="card-body"><h4>Charm 6</h4><small style="color: var(--text-secondary);">Rainbow Selection</small></div></article>
+        <article class="card"><img src="Charm 7.jpg" alt="C7" /><div class="card-body"><h4>Charm 7</h4><small style="color: var(--text-secondary);">Soft Tone Candy</small></div></article>
+        <article class="card"><img src="Charm 8.jpg" alt="C8" /><div class="card-body"><h4>Charm 8</h4><small style="color: var(--text-secondary);">Glow Glass Variant</small></div></article>
       </div>
 
-      <div style="text-align: center;">
-        <!-- Tombol diperbarui menjadi gaya Glossy -->
+      <div style="text-align: center; margin-top: 4rem;">
         <button class="btn-glossy" data-confirm data-url="https://wa.me/6289525465737?text=Halo%20LoopLine%2C%20aku%20mau%20konsultasi%20custom%20bagcharm">Kirim Brief Custom via WA</button>
       </div>
     </div>
@@ -581,78 +1081,70 @@
   <section id="caraorder">
     <div class="section-wrapper">
       <h2 class="sec-title">Cara Order</h2>
-      <p class="sec-sub">Ikuti langkah mudah untuk mendapatkan bagcharm-mu.</p>
+      <p class="sec-sub">Ikuti langkah mudah untuk mendapatkan bagcharm liquid glass-mu.</p>
       <div class="steps">
         <div class="step-card">
           <div class="step-num">1</div>
           <h4>Pilih Model</h4>
-          <p>Tentukan pilihan dari katalog atau siapkan draf custom-mu.</p>
+          <p style="color: var(--text-secondary);">Tentukan pilihan dari katalog atau siapkan draf custom-mu.</p>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
           <h4>Hubungi Admin</h4>
-          <p>Klik tombol WhatsApp untuk konsultasi dan detail harga.</p>
+          <p style="color: var(--text-secondary);">Klik tombol WhatsApp untuk konsultasi dan detail harga.</p>
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
           <h4>Produksi & Kirim</h4>
-          <p>Pesanan akan dirakit dengan teliti dan segera dikirim ke alamatmu.</p>
+          <p style="color: var(--text-secondary);">Pesanan akan dirakit dengan teliti dan segera dikirim ke alamatmu.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- KONTAK & LOKASI (RAMAI & LENGKAP) -->
-  <section id="kontak" style="background: rgba(125, 211, 252, 0.1);">
+  <!-- KONTAK -->
+  <section id="kontak" style="background: linear-gradient(135deg, rgba(100, 210, 255, 0.05), rgba(255, 107, 201, 0.05));">
     <div class="section-wrapper" style="text-align: center;">
       <h2 class="sec-title">Kontak & Lokasi</h2>
       <p class="sec-sub">Lokasi utama di PNJ, Business Center. Klik tombol di bawah untuk info lengkap.</p>
       
-      <!-- Container Tombol yang Lebih Ramai -->
-      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
-        
-        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://maps.app.goo.gl/rZmL5Djc3o2s8so9A">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+        <button class="btn-card" style="width: auto; padding: 1.2rem 2.5rem; display: flex; align-items: center; gap: 0.8rem; font-size: 1rem;" data-confirm data-url="https://maps.app.goo.gl/rZmL5Djc3o2s8so9A">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           Lokasi PNJ
         </button>
         
-        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #25D366; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://wa.me/6289525465737">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.654-.698c.93.513 1.933.784 2.808.784 3.168 0 5.765-2.596 5.765-5.772 0-3.172-2.585-5.763-5.767-5.765z"/></svg>
+        <button class="btn-card" style="width: auto; padding: 1.2rem 2.5rem; background: #25D366; color: white; border: none; display: flex; align-items: center; gap: 0.8rem; font-size: 1rem;" data-confirm data-url="https://wa.me/6289525465737">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.654-.698c.93.513 1.933.784 2.808.784 3.168 0 5.765-2.596 5.765-5.772 0-3.172-2.585-5.763-5.767-5.765z"/></svg>
           WhatsApp
         </button>
 
-        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #E1306C; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://www.instagram.com/loopline.charm">
-           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg>
+        <button class="btn-card" style="width: auto; padding: 1.2rem 2.5rem; background: linear-gradient(135deg, #E1306C, #C13584); color: white; border: none; display: flex; align-items: center; gap: 0.8rem; font-size: 1rem;" data-confirm data-url="https://www.instagram.com/loopline.charm">
+           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg>
           Instagram
         </button>
-
-        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #1877F2; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="#">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.35C0 23.41.59 24 1.325 24H12.82v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.33 0 2.47.1 2.8.15v3.24h-1.9c-1.5 0-1.8.72-1.8 1.77v2.3h3.59l-.47 3.62h-3.12V24h5.78c.74 0 1.33-.59 1.33-1.32V1.32C24 .59 23.41 0 22.675 0z"/></svg>
-          Facebook
-        </button>
-
       </div>
       
-      <p style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">
-        WA / Admin: <span style="color: var(--accent-pink);">0895-2546-5737</span>
+      <p style="font-weight: 800; font-size: 1.3rem; color: var(--text-main);">
+        WA / Admin: <span style="color: var(--accent-pink); font-weight: 900;">0895-2546-5737</span>
       </p>
     </div>
   </section>
 
   <footer>
-    <div class="footer-grid" style="justify-content: center; text-align: center;">
+    <div class="footer-grid">
       <div class="footer-brand">
         <h2>LoopLine</h2>
-        <p style="max-width: 500px; margin: 0 auto;">Premium Handmade Bagcharm Creator. Menghadirkan kilauan estetik untuk setiap koleksi tas kesayanganmu.</p>
-        <div class="footer-socials" style="justify-content: center;">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg></a>
+        <p style="max-width: 500px; margin: 0 auto; color: var(--text-secondary); line-height: 1.7;">Premium Handmade Bagcharm Creator. Menghadirkan kilauan estetik liquid glass untuk setiap koleksi tas kesayanganmu.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/loopline.charm" aria-label="Instagram" data-confirm data-url="https://www.instagram.com/loopline.charm"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg></a>
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.35C0 23.41.59 24 1.325 24H12.82v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.33 0 2.47.1 2.8.15v3.24h-1.9c-1.5 0-1.8.72-1.8 1.77v2.3h3.59l-.47 3.62h-3.12V24h5.78c.74 0 1.33-.59 1.33-1.32V1.32C24 .59 23.41 0 22.675 0z"/></svg></a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 LoopLine | Liquid Glass Edition</p>
-      <p>Made with 💗 at PNJ</p>
+      <p>© 2025 LoopLine | Apple Liquid Glass Edition</p>
+      <p>Made with <span style="color: var(--accent-pink);">♥</span> at PNJ</p>
     </div>
   </footer>
 
@@ -696,6 +1188,37 @@
     };
     
     window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; }
+
+    // Parallax effect untuk hero image
+    window.addEventListener('scroll', () => {
+      const heroImg = document.querySelector('.hero-img');
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.2;
+      if (heroImg) {
+        heroImg.style.transform = `perspective(1000px) rotateY(-5deg) rotateX(3deg) translateY(${rate}px)`;
+      }
+    });
+
+    // Liquid hover effect untuk card
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateY = (x - centerX) / 25;
+        const rotateX = (centerY - y) / 25;
+        
+        card.style.transform = `translateY(-12px) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(-12px) scale(1.03)';
+      });
+    });
   </script>
 </body>
 </html>
