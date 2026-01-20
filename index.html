@@ -1,357 +1,701 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <style>
-  * {
-    box-sizing: border-box;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-  main {
-    flex: 1;
-  }
-</style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><!-- GANTI JUDUL HALAMAN DI SINI --></title>
-    <!-- Memuat Tailwind CSS dari CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Menggunakan font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f9fc; /* Warna latar belakang lembut */
-        }
-        /* GANTI KODE WARNA UTAMA BISNIS ANDA DI SINI */
-        .text-loopline-primary {
-            color: #ff69b4; /* Pink cerah, mewakili aksesoris anak muda/estetik */
-        }
-        .bg-loopline-primary {
-            background-color: #ff69b4;
-        }
-        .shadow-loopline {
-            box-shadow: 0 10px 25px -5px rgba(255, 105, 180, 0.3), 0 5px 10px -5px rgba(255, 105, 180, 0.15);
-        }
-        .charm-scroll-area::-webkit-scrollbar {
-            display: none;
-        }
-        .charm-scroll-area {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(255, 105, 180, 0.5), 0 2px 4px -1px rgba(255, 105, 180, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoopLine - Premium Liquid Glass</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-shine: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+      --accent-pink: #ff3e8a;
+      --accent-blue: #7dd3fc;
+      --accent-purple: #c084fc;
+      --text-main: #1e293b;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #f0f4f8;
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(338,100%,90%,1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(202,100%,90%,1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(270,100%,90%,1) 0, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* --- GLASS NAVIGATION --- */
+    header {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 95%;
+      max-width: 1100px;
+      z-index: 1000;
+      border-radius: 25px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-pink);
+    }
+
+    .logo span {
+      background: linear-gradient(135deg, var(--accent-pink), #ff87bd);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Glass Buttons in Nav - CLEAN VERSION (No Border) */
+    nav a {
+      padding: 0.5rem 1rem;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      text-decoration: none; /* Hapus garis bawah bawaan link */
+      /* Border dihapus agar lebih clean */
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--accent-pink);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-nav-wa {
+      background: var(--accent-pink);
+      color: white !important;
+      border-radius: 15px;
+      padding: 0.6rem 1.2rem !important;
+      box-shadow: 0 4px 15px rgba(255, 62, 138, 0.3);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      padding: 160px 1rem 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 3rem;
+      border-radius: 40px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 100%;
+      background: var(--glass-shine);
+      pointer-events: none;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-img {
+      border-radius: 40px;
+      overflow: hidden;
+      border: 2px solid var(--glass-border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+      transform: rotate(2deg);
+    }
+
+    .hero-img img { width: 100%; display: block; transition: 0.5s; }
+    .hero-img:hover img { transform: scale(1.05) rotate(-2deg); }
+
+    /* --- LIQUID GLASS CARDS --- */
+    section { padding: 5rem 1rem; }
+    .section-wrapper { max-width: 1100px; margin: 0 auto; }
+    
+    .sec-title { 
+      font-size: 2.5rem; 
+      font-weight: 800; 
+      text-align: center; 
+      margin-bottom: 0.5rem; 
+    }
+    
+    .sec-sub { 
+      text-align: center; 
+      color: #64748b; 
+      margin-bottom: 3.5rem; 
+      max-width: 600px; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+
+    /* FLEX LAYOUT untuk Katalog & Custom agar 'Memenuhi' */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Menengahkan item jika ganjil */
+      gap: 1.5rem;
+    }
+
+    .custom-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      /* Logic Flex agar memenuhi */
+      flex: 1 1 260px; /* Base width 260px, bisa mengecil/membesar */
+      max-width: 350px; /* Batas maksimal agar tidak terlalu lebar */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      transition: 0.6s;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .card:hover::after {
+      left: 100%;
+      top: 100%;
+    }
+
+    /* GAMBAR INSTAGRAM STYLE (SQUARE / LUAS) */
+    .card img { 
+      width: 100%; 
+      aspect-ratio: 1 / 1; /* Persegi Sempurna */
+      object-fit: cover; 
+    }
+
+    .card-body { padding: 1.5rem; text-align: center; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    .card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+    .price { font-weight: 800; color: var(--accent-pink); font-size: 1.2rem; margin: 0.5rem 0 1rem; }
+    
+    .btn-card {
+      width: 100%;
+      background: rgba(255, 62, 138, 0.1);
+      border: 1px solid rgba(255, 62, 138, 0.2);
+      padding: 0.8rem;
+      border-radius: 15px;
+      color: var(--accent-pink);
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: auto;
+    }
+
+    .btn-card:hover {
+      background: var(--accent-pink);
+      color: white;
+    }
+
+    /* TOMBOL GLOSSY LIQUID GLASS untuk Call to Action */
+    .btn-glossy {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: var(--accent-pink) !important;
+      padding: 1.2rem 3rem !important;
+      font-size: 1.1rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 62, 138, 0.15);
+      position: relative;
+      overflow: hidden;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-glossy:hover {
+        background: var(--accent-pink);
+        color: white !important;
+        box-shadow: 0 15px 40px rgba(255, 62, 138, 0.4);
+        transform: translateY(-3px);
+    }
+
+    /* --- CATEGORY BADGE --- */
+    .badge-liquid {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      background: rgba(125, 211, 252, 0.2);
+      color: #0369a1;
+    }
+
+    /* --- STEPS --- */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .step-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 2.5rem;
+      border-radius: 35px;
+      text-align: center;
+    }
+    .step-num {
+      width: 50px; height: 50px; background: var(--accent-pink); color: white;
+      border-radius: 18px; display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 800; margin-bottom: 1.5rem; font-size: 1.2rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 4rem 1rem 2rem;
+      margin-top: 5rem;
+    }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 3rem; }
+    .footer-brand h2 { margin: 0 0 1rem; font-size: 2rem; }
+    .footer-socials { display: flex; gap: 1.5rem; margin-top: 1.5rem; }
+    .footer-socials a svg { fill: white; width: 28px; opacity: 0.7; transition: 0.3s; }
+    .footer-socials a:hover svg { opacity: 1; transform: scale(1.1); }
+    .footer-bottom { 
+      max-width: 1100px; margin: 3rem auto 0; padding-top: 2rem; 
+      border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; font-size: 0.85rem; opacity: 0.6;
+    }
+
+    /* --- POPUP LIQUID THEME --- */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); 
+      backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; z-index: 9999;
+    }
+    .modal {
+      background: rgba(255, 255, 255, 0.75); /* Transparan */
+      backdrop-filter: blur(25px); /* Efek Kaca */
+      padding: 2.5rem; 
+      border-radius: 35px; 
+      max-width: 400px; width: 90%;
+      text-align: center; 
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    .modal h3 { color: var(--text-main); margin-top: 0; }
+    .modal-btns { display: flex; gap: 1rem; margin-top: 2rem; }
+    .modal-btns button { flex: 1; padding: 0.8rem; border-radius: 15px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; }
+    .btn-cancel { background: rgba(0,0,0,0.05); color: #555; }
+    .btn-cancel:hover { background: rgba(0,0,0,0.1); }
+    .btn-confirm { background: var(--accent-pink); color: white; box-shadow: 0 5px 15px rgba(255, 62, 138, 0.3); }
+    .btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 62, 138, 0.4); }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      nav ul { 
+        position: absolute; top: 80px; left: 0; right: 0; 
+        background: white; padding: 1.5rem; flex-direction: column; 
+        display: none; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle { display: block; background: none; border: none; font-size: 1.8rem; cursor: pointer; }
+    }
+    .menu-toggle { display: none; }
+  </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow-md sticky top-0 z-10">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-extrabold text-gray-800">
-                <!-- GANTI NAMA BRAND DI SINI -->
-                <span class="text-loopline-primary">Loop</span>Line
-            </h1>
-            <button id="cta-button-mobile" class="bg-loopline-primary text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-pink-600 transition duration-300 sm:hidden">
-                <!-- GANTI TEKS TOMBOL CTA (MOBILE) DI SINI -->
-                Pesan Sekarang
-            </button>
-            <button id="cta-button-desktop" class="hidden bg-loopline-primary text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-pink-600 transition duration-300 sm:block">
-                <!-- GANTI TEKS TOMBOL CTA (DESKTOP) DI SINI -->
-                Custom Bag Charm (PO)
-            </button>
+  <header id="top">
+    <div class="nav-container">
+      <a href="#top" class="logo"><span>LL</span> LoopLine</a>
+      <nav>
+        <ul id="navMenu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#katalog">Katalog</a></li>
+          <li><a href="#custom">Custom</a></li>
+          <li><a href="#caraorder">Order</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+          <li><a href="#" class="btn-nav-wa" data-confirm data-url="https://wa.me/6289525465737">WhatsApp</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p style="letter-spacing: 0.2rem; text-transform: uppercase; color: var(--accent-pink); font-weight: 800; font-size: 0.75rem; margin-bottom: 1rem;">Bag Charm • Handmade • Custom</p>
+        <h1 class="hero-title">Make your Charm, Show your Vibe.</h1>
+        <p style="color: #64748b; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">Ciptakan gantungan tas impianmu dengan material premium berkualitas. Pilih warna, bentuk, dan detail sesukamu.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#katalog" class="btn-nav-wa" style="background: var(--accent-blue); color: #0369a1 !important; box-shadow: 0 4px 15px rgba(125, 211, 252, 0.3);">Lihat Koleksi</a>
+          <button class="btn-card" style="width: auto; padding: 0.6rem 1.5rem;" data-confirm data-url="https://wa.me/6289525465737">Mulai Custom</button>
         </div>
-    </header>
+      </div>
+      <div class="hero-img">
+        <img src="canva pink.png" alt="Hero Bagcharm" />
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="text-gray-700 body-font py-16 md:py-24 bg-white">
-        <div class="container mx-auto flex flex-col items-center px-5">
-            <div class="lg:w-2/3 w-full text-center">
-                <h2 class="title-font sm:text-5xl text-4xl mb-4 font-extrabold text-gray-900 leading-tight">
-                    <!-- GANTI SLOGAN UTAMA DI SINI -->
-                    <span class="text-loopline-primary">CREATE YOUR CHARM</span>
-                    <br class="hidden sm:inline">
-                    Aksesoris Custom Personalize Your Style!
-                </h2>
-                <p class="mb-8 leading-relaxed text-lg text-gray-600 font-medium">
-                    <!-- GANTI DESKRIPSI SINGKAT PRODUK DI SINI -->
-                    Ciptakan Bag Charm unik sesuai kepribadianmu. Pilih warna, Charm, dan nama. Sesuai Keinginanmmu
-                </p>
-                <div class="flex justify-center">
-                    <button class="btn-primary bg-loopline-primary text-white font-bold py-3 px-8 rounded-full text-lg shadow-loopline transition duration-300" onclick="scrollToSection('produk')">
-                        <!-- GANTI TEKS TOMBOL HERO DI SINI -->
-                        Lihat Produk & Varian
-                    </button>
-                </div>
-            </div>
-            <!-- Placeholder Visual: Charm/Aksesoris -->
-            <div class="mt-12 w-full max-w-lg">
-                <div class="bg-pink-100 p-6 rounded-xl border-4 border-dashed border-pink-300 flex justify-center items-center h-48">
-                    <!-- BISA DIGANTI DENGAN GAMBAR/LOGO ASLI JIKA ADA -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-loopline-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="7" width="18" height="15" rx="2" ry="2"></rect>
-                        <path d="M17 10v-3a5 5 0 0 0-10 0v3"></path>
-                        <circle cx="12" cy="18" r="3" fill="#ff69b4" stroke="none"></circle>
-                        <path d="M12 21v1" stroke="#ff69b4" stroke-dasharray="3 3"></path>
-                    </svg>
-                </div>
-                <p class="text-center text-sm text-gray-500 mt-2">Desain estetik, dibuat khusus untukmu.</p>
-            </div>
+  <!-- KATALOG READY -->
+  <section id="katalog">
+    <div class="section-wrapper">
+      <h2 class="sec-title">Katalog BagCharm</h2>
+      <p class="sec-sub">Pilih varian instan yang sudah kami desain khusus untukmu.</p>
+      
+      <!-- Section 15k -->
+      <h3 style="margin-bottom: 1.5rem; color: var(--accent-pink); border-bottom: 2px solid rgba(255,62,138,0.2); padding-bottom: 0.5rem; display: inline-block;">✦ Premium Collection (Rp15.000)</h3>
+      <div class="card-grid" style="margin-bottom: 4rem;">
+        <article class="card">
+          <img src="yellow.png" alt="Flutter Shy" />
+          <div class="card-body">
+            <h3>Flutter Shy</h3>
+            <p class="price">Rp15.000</p>
+            <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Flutter%20Shy">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="blue.png" alt="Bubble Gum" />
+          <div class="card-body">
+            <h3>Bubble Gum</h3>
+            <p class="price">Rp15.000</p>
+            <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Bubble%20Gum">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="pink.png" alt="Pinky Bliss" />
+          <div class="card-body">
+            <h3>Pink Bliss</h3>
+            <p class="price">Rp15.000</p>
+            <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Pinky%20Bliss">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="coklat.png" alt="Cleveland" />
+          <div class="card-body">
+            <h3>Cleveland</h3>
+            <p class="price">Rp15.000</p>
+            <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Cleveland">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="byellow.png" alt="Brave Yellow" />
+          <div class="card-body">
+            <h3>Brave Yellow</h3>
+            <p class="price">Rp15.000</p>
+            <button class="btn-card" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Brave%20Yellow">Pesan via WA</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Section 10k -->
+      <h3 style="margin-bottom: 1.5rem; color: var(--accent-blue); border-bottom: 2px solid rgba(125,211,252,0.4); padding-bottom: 0.5rem; display: inline-block;">✦ Basic Collection (Rp10.000)</h3>
+      <div class="card-grid">
+        <article class="card">
+          <img src="yellowy.png" alt="Yellowy" />
+          <div class="card-body">
+            <h3>Yellowy</h3>
+            <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
+            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Yellowy">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="bluey.png" alt="Bluey" />
+          <div class="card-body">
+            <h3>Bluey</h3>
+            <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
+            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Bluey">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="pinky.png" alt="Pinky" />
+          <div class="card-body">
+            <h3>Pinky</h3>
+            <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
+            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Pinky">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="blacky.png" alt="Blacky" />
+          <div class="card-body">
+            <h3>Blacky</h3>
+            <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
+            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Blacky">Pesan via WA</button>
+          </div>
+        </article>
+        <article class="card">
+          <img src="browny.png" alt="Browny" />
+          <div class="card-body">
+            <h3>Browny</h3>
+            <p class="price" style="color: var(--accent-blue);">Rp10.000</p>
+            <button class="btn-card" style="color: var(--accent-blue); background: rgba(125,211,252,0.15); border-color: rgba(125,211,252,0.3);" data-confirm data-url="https://wa.me/6289525465737?text=Order%20Browny">Pesan via WA</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM SECTION -->
+  <section id="custom" style="background: rgba(255,255,255,0.2);">
+    <div class="section-wrapper">
+      <h2 class="sec-title">Custom Bagcharm~</h2>
+      <p class="sec-sub">Mix and Match sesukamu untuk hasil yang personal.</p>
+
+      <!-- 1. BENTUK (Re-arranged Layout Flexible) -->
+      <h3 style="margin-bottom: 2rem; border-left: 5px solid var(--accent-pink); padding-left: 1rem;">1. Pilihan Bentuk (Main, Sub, Mini)</h3>
+      
+      <p style="font-weight: 700; margin-bottom: 1rem; color: var(--accent-pink);">✦ Main Items (Fokus Utama)</p>
+      <!-- Gunakan class custom-grid agar item melebar jika hanya sedikit -->
+      <div class="custom-grid" style="margin-bottom: 3rem;">
+        <article class="card">
+          <img src="model 5.jpg" alt="A1" />
+          <div class="card-body"><span class="badge-liquid">Main [A1]</span><h4>Bentuk Love Glossy</h4></div>
+        </article>
+        <article class="card">
+          <img src="model 7.jpg" alt="A2" />
+          <div class="card-body"><span class="badge-liquid">Main [A2]</span><h4>Bentuk Star Clear</h4></div>
+        </article>
+        <article class="card">
+          <img src="model 2.jpg" alt="A3" />
+          <div class="card-body"><span class="badge-liquid">Main [A3]</span><h4>Bentuk Heart Liquid</h4></div>
+        </article>
+      </div>
+
+      <p style="font-weight: 700; margin-bottom: 1rem; color: var(--accent-purple);">✦ Sub Items (Pendukung)</p>
+      <div class="custom-grid" style="margin-bottom: 3rem;">
+        <article class="card">
+          <img src="model 3.jpg" alt="B1" />
+          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B1]</span><h4>Accent Beads Small</h4></div>
+        </article>
+        <article class="card">
+          <img src="model 8.jpg" alt="B2" />
+          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B2]</span><h4>Double Orb Bead</h4></div>
+        </article>
+        <article class="card">
+          <img src="model 1.jpg" alt="B3" />
+          <div class="card-body"><span class="badge-liquid" style="background:rgba(192, 132, 252, 0.2); color:#7e22ce;">Sub [B3]</span><h4>Tri-Bead Glass</h4></div>
+        </article>
+      </div>
+
+      <p style="font-weight: 700; margin-bottom: 1rem; color: #64748b;">✦ Mini Add-ons (Detail Kecil)</p>
+      <div class="custom-grid" style="margin-bottom: 4rem;">
+        <article class="card">
+          <img src="model 4.jpg" alt="C1" />
+          <div class="card-body"><span class="badge-liquid" style="background:#f1f5f9; color:#475569;">Mini [C1]</span><h4>Tiny Drop Charm</h4></div>
+        </article>
+        <article class="card">
+          <img src="model 6.jpg" alt="C2" />
+          <div class="card-body"><span class="badge-liquid" style="background:#f1f5f9; color:#475569;">Mini [C2]</span><h4>Small Sparkle</h4></div>
+        </article>
+      </div>
+
+      <!-- 2. CHARM (Restored) -->
+      <h3 style="margin-bottom: 2rem; border-left: 5px solid var(--accent-blue); padding-left: 1rem;">2. Pilihan Charm (Manik/Gantungan)</h3>
+      <div class="card-grid" style="margin-bottom: 4rem;">
+        <article class="card"><img src="charm 1.jpg" alt="C1" /><div class="card-body"><h4>Charm 1</h4><small>Ungu, Biru, Kuning, Merah, Hijau</small></div></article>
+        <article class="card"><img src="charm 2.jpg" alt="C2" /><div class="card-body"><h4>Charm 2</h4><small>Pink, Biru, Sunny, Ungu (Labubu)</small></div></article>
+        <article class="card"><img src="charm 3.jpg" alt="C3" /><div class="card-body"><h4>Charm 3</h4><small>Ungu, Biru, Kuning, Pink</small></div></article>
+        <article class="card"><img src="charm 4.jpg" alt="C4" /><div class="card-body"><h4>Charm 4</h4><small>Ungu, Biru, Kuning, Pink</small></div></article>
+        <article class="card"><img src="Charm 5.jpg" alt="C5" /><div class="card-body"><h4>Charm 5</h4><small>Warna Pastel Lengkap</small></div></article>
+        <article class="card"><img src="Charm 6.jpg" alt="C6" /><div class="card-body"><h4>Charm 6</h4><small>Rainbow Selection</small></div></article>
+        <article class="card"><img src="Charm 7.jpg" alt="C7" /><div class="card-body"><h4>Charm 7</h4><small>Soft Tone Candy</small></div></article>
+        <article class="card"><img src="Charm 8.jpg" alt="C8" /><div class="card-body"><h4>Charm 8</h4><small>Glow Glass Variant</small></div></article>
+      </div>
+
+      <div style="text-align: center;">
+        <!-- Tombol diperbarui menjadi gaya Glossy -->
+        <button class="btn-glossy" data-confirm data-url="https://wa.me/6289525465737?text=Halo%20LoopLine%2C%20aku%20mau%20konsultasi%20custom%20bagcharm">Kirim Brief Custom via WA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARA ORDER -->
+  <section id="caraorder">
+    <div class="section-wrapper">
+      <h2 class="sec-title">Cara Order</h2>
+      <p class="sec-sub">Ikuti langkah mudah untuk mendapatkan bagcharm-mu.</p>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Pilih Model</h4>
+          <p>Tentukan pilihan dari katalog atau siapkan draf custom-mu.</p>
         </div>
-    </section>
-
-    <!-- Keunggulan Produk Section -->
-    <section id="produk" class="text-gray-700 body-font bg-gray-50 py-16 md:py-20">
-        <div class="container mx-auto px-5">
-            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Kenapa Harus Loopline? <!-- GANTI JUDUL DI SINI --></h3>
-            <div class="flex flex-wrap text-center">
-
-                <!-- Keunggulan 1: Custom -->
-                <div class="p-4 md:w-1/3 w-full">
-                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
-                        <!-- GANTI ICON JIKA PERLU -->
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5l-2.5 2.5 4 4 2.5-2.5a2.41 2.41 0 0 0-4-4z"/><path d="M22 15s-.5-2-2-2-4 2-4 2"/><path d="M17 19h-5l-5-5-2-8 5 2 8 2 2 5z"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Konsep Custom Eksklusif <!-- GANTI JUDUL KEUNGGULAN 1 --></h4>
-                        <p class="leading-relaxed text-gray-600">Pilih sendiri tali macrame, charm, dan manik huruf (nama/inisial) sesuai selera dan gayamu! <!-- GANTI DESKRIPSI KEUNGGULAN 1 --></p>
-                    </div>
-                </div>
-
-                <!-- Keunggulan 2: Desain Kekinian -->
-                <div class="p-4 md:w-1/3 w-full">
-                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
-                        <!-- GANTI ICON JIKA PERLU -->
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Estetik & Ikuti Tren <!-- GANTI JUDUL KEUNGGULAN 2 --></h4>
-                        <p class="leading-relaxed text-gray-600">Desain Estetik, cocok untuk mempercantik tas, kunci, atau barang pribadi agar terlihat lebih lucu dan estetik. <!-- GANTI DESKRIPSI KEUNGGULAN 2 --></p>
-                    </div>
-                </div>
-
-                <!-- Keunggulan 3: Affordable -->
-                <div class="p-4 md:w-1/3 w-full">
-                    <div class="px-6 py-8 border-2 border-gray-200 rounded-xl bg-white shadow-lg transition duration-300 hover:shadow-xl hover:border-loopline-primary">
-                        <!-- GANTI ICON JIKA PERLU -->
-                        <div class="w-12 h-12 inline-flex items-center justify-center rounded-full bg-pink-100 text-loopline-primary mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H7l-2 4h14l-2 4h-4"/><path d="M5 9h14M7 13h10"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold text-gray-900 mb-2">Harga Terjangkau <!-- GANTI JUDUL KEUNGGULAN 3 --></h4>
-                        <p class="leading-relaxed text-gray-600">Dengan harga jual terjangkau (Rp15.000/unit), produk ini sangat Affordable kantong pelajar dan mahasiswa. <!-- GANTI DESKRIPSI KEUNGGULAN 3 --></p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Hubungi Admin</h4>
+          <p>Klik tombol WhatsApp untuk konsultasi dan detail harga.</p>
         </div>
-    </section>
-
-    <!-- Varian & Contoh Produk Section -->
-    <section class="text-gray-700 body-font py-16 md:py-20">
-        <div class="container mx-auto px-5">
-            <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Contoh Varian Favorit <!-- GANTI JUDUL DI SINI --></h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 charm-scroll-area overflow-x-auto pb-4">
-
-                <!-- Produk Card 1 -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
-                    <div class="w-full h-32 bg-purple-200 rounded-lg flex items-center justify-center mb-3">
-                        <span class="text-5xl">🦄 <!-- GANTI DENGAN EMOJI/ICON PRODUK 1 --></span>
-                    </div>
-                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Unicorn Dream <!-- GANTI NAMA PRODUK 1 --></h4>
-                    <p class="text-sm text-gray-500 mb-2">Tali ungu & charm karakter <!-- GANTI KETERANGAN PRODUK 1 --></p>
-                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 1 --></p>
-                </div>
-
-                <!-- Produk Card 2 -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
-                    <div class="w-full h-32 bg-green-200 rounded-lg flex items-center justify-center mb-3">
-                        <span class="text-5xl">🌿 <!-- GANTI DENGAN EMOJI/ICON PRODUK 2 --></span>
-                    </div>
-                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Nature Vibes <!-- GANTI NAMA PRODUK 2 --></h4>
-                    <p class="text-sm text-gray-500 mb-2">Tali hijau & charm lucu  <!-- GANTI KETERANGAN PRODUK 2 --></p>
-                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 2 --></p>
-                </div>
-
-                <!-- Produk Card 3 -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
-                    <div class="w-full h-32 bg-yellow-200 rounded-lg flex items-center justify-center mb-3">
-                        <span class="text-5xl">🌞 <!-- GANTI DENGAN EMOJI/ICON PRODUK 3 --></span>
-                    </div>
-                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Sunny Initials <!-- GANTI NAMA PRODUK 3 --></h4>
-                    <p class="text-sm text-gray-500 mb-2">Tali kuning & manik nama <!-- GANTI KETERANGAN PRODUK 3 --></p>
-                    <p class="text-xl font-bold text-loopline-primary">Rp15.000 <!-- GANTI HARGA PRODUK 3 --></p>
-                </div>
-
-                <!-- Produk Card 4 -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-4 min-w-[160px] cursor-pointer border border-gray-100">
-                    <div class="w-full h-32 bg-red-200 rounded-lg flex items-center justify-center mb-3">
-                        <span class="text-5xl">❤️ <!-- GANTI DENGAN EMOJI/ICON PRODUK 4 --></span>
-                    </div>
-                    <h4 class="text-lg font-semibold text-gray-900 truncate">Varian Couple Set <!-- GANTI NAMA PRODUK 4 --></h4>
-                    <p class="text-sm text-gray-500 mb-2">Spesial 2 gantungan + bonus <!-- GANTI KETERANGAN PRODUK 4 --></p>
-                    <p class="text-xl font-bold text-loopline-primary">Rp30.000 <!-- GANTI HARGA PRODUK 4 --></p>
-                </div>
-
-            </div>
-            <div class="text-center mt-10">
-                <button class="btn-primary bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-full text-lg hover:bg-loopline-primary hover:text-white transition duration-300" onclick="alert('Silahkan langsung Klik Chat Admin Yaa')">
-                    <!-- GANTI TEKS TOMBOL DI SINI -->
-                    Mulai Desain Charm-mu!
-                </button>
-            </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Produksi & Kirim</h4>
+          <p>Pesanan akan dirakit dengan teliti dan segera dikirim ke alamatmu.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Proses Pemesanan (Call to Action) Section -->
-    <section class="bg-loopline-primary py-16 md:py-20 text-white">
-        <div class="container mx-auto px-5 text-center">
-            <h3 class="text-3xl font-bold mb-4">Bagaimana Cara Pesan? <!-- GANTI JUDUL DI SINI --></h3>
-            <p class="text-lg mb-10 opacity-90">Kami menggunakan sistem Pre-Order (PO) untuk menjamin kualitas custom. <!-- GANTI SUBJUDUL DI SINI --></p>
-
-            <div class="flex flex-wrap justify-center -m-4">
-
-                <!-- Langkah 1 -->
-                <div class="p-4 md:w-1/4 w-1/2">
-                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
-                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">1.</span>
-                        <p class="font-semibold">Pilih Custom <!-- GANTI TEKS LANGKAH 1 --></p>
-                        <p class="text-sm mt-1">Tentukan desain, warna, dan charm yang kamu mau. <!-- GANTI DESKRIPSI LANGKAH 1 --></p>
-                    </div>
-                </div>
-
-                <!-- Langkah 2 -->
-                <div class="p-4 md:w-1/4 w-1/2">
-                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
-                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">2.</span>
-                        <p class="font-semibold">Proses PO <!-- GANTI TEKS LANGKAH 2 --></p>
-                        <p class="text-sm mt-1">Kami proses perakitan manual (handmade) dalam 1-3 hari. <!-- GANTI DESKRIPSI LANGKAH 2 --></p>
-                    </div>
-                </div>
-
-                <!-- Langkah 3 -->
-                <div class="p-4 md:w-1/4 w-1/2">
-                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
-                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">3.</span>
-                        <p class="font-semibold">Pengambilan (COD) <!-- GANTI TEKS LANGKAH 3 --></p>
-                        <p class="text-sm mt-1">Ambil di GBC PNJ (atau area COD lain yang disepakati). <!-- GANTI DESKRIPSI LANGKAH 3 --></p>
-                    </div>
-                </div>
-
-                <!-- Lokasi -->
-                <div class="p-4 md:w-1/4 w-1/2">
-                    <div class="bg-white text-gray-800 rounded-xl p-6 shadow-loopline">
-                        <span class="text-4xl font-extrabold text-loopline-primary block mb-2">📍</span>
-                        <p class="font-semibold">Lokasi Utama <!-- GANTI JUDUL LOKASI --></p>
-                        <p class="text-sm mt-1">Green Business Center (GBC) Gedung Administrasi Niaga, PNJ. <!-- GANTI DETAIL LOKASI --></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-12">
-                <p class="text-xl font-semibold mb-4">Siap bikin charm unikmu? <!-- GANTI CALL TO ACTION --></p>
-                <a href="https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~" target="_blank" class="btn-primary inline-flex items-center bg-white text-loopline-primary font-bold py-3 px-8 rounded-full text-lg shadow-xl hover:bg-pink-100 transition duration-300">
-                    <!-- GANTI LINK WA DI ATAS & TEKS TOMBOL DI BAWAH -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                    Chat Admin (Pesan via WhatsApp)
-                </a>
-                <p class="text-sm mt-3 opacity-80">Kami melayani ramah dan fast response (IF NOT BUSY.. Hopefully) <!-- GANTI SUB TEKS --></p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-gray-600 body-font bg-gray-800 text-white">
-        <div class="container mx-auto px-5 py-8">
-            <div class="flex flex-wrap md:text-left text-center -mb-10 -mx-4">
-                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                    <h2 class="title-font font-bold text-lg text-white mb-3">LOOPLINE <!-- GANTI NAMA BRAND DI SINI --></h2>
-                    <nav class="list-none mb-10">
-                        <li><p class="text-sm text-gray-400">Usaha Aksesoris Custom (Bag Charm). <!-- GANTI DESKRIPSI --></p></li>
-                        <li><p class="text-sm text-gray-400 mt-2">Visi: Menjadi usaha aksesoris kreatif dan kekinian yang digemari anak muda. <!-- GANTI VISI --></p></li>
-                    </nav>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">KONTAK <!-- GANTI JUDUL KOLOM --></h2>
-                    <nav class="list-none mb-10">
-                        <li>
-                            <p class="text-gray-400 hover:text-loopline-primary transition duration-200">Instagram: @loopline.charm <!-- GANTI AKUN IG --></p>
-                        </li>
-                        <li>
-                            <p class="text-gray-400 hover:text-loopline-primary transition duration-200">WhatsApp: 0895-2546-5737<!-- GANTI NOMOR WA --></p>
-                        </li>
-                    </nav>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">PRODUK <!-- GANTI JUDUL KOLOM --></h2>
-                    <nav class="list-none mb-10">
-                        <li>
-                            <p class="text-gray-400">Bag Charm Custom <!-- GANTI NAMA PRODUK --></p>
-                        </li>
-                        <li>
-                            <p class="text-gray-400">Dengan warna tali costum <!-- GANTI NAMA PRODUK --></p>
-                        </li>
-                        <li>
-                            <p class="text-gray-400">Charm & Manik Nama <!-- GANTI NAMA PRODUK --></p>
-                        </li>
-                    </nav>
-                </div>
-                <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                    <h2 class="title-font font-bold text-white tracking-widest text-sm mb-3">PEMBAYARAN <!-- GANTI JUDUL KOLOM --></h2>
-                    <nav class="list-none mb-10">
-                        <li>
-                            <p class="text-gray-400">QRIS <!-- GANTI METODE --></p>
-                        </li>
-                        <li>
-                            <p class="text-gray-400">Cash On Delivery (COD PNJ) <!-- GANTI METODE --></p>
-                        </li>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="bg-gray-900">
-            <div class="container mx-auto py-4 px-5">
-                <p class="text-gray-500 text-sm text-center sm:text-left">© 2025 Loopline — Dibuat oleh ABT3D Kelompok 8 <!-- GANTI COPYRIGHT --></p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Fungsi untuk scroll ke bagian produk
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                window.scrollTo({
-                    top: element.offsetTop - 70, // Kurangi tinggi header
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Menambahkan event listener ke tombol CTA di header
-        // GANTI LINK WA DI BAWAH INI DENGAN NOMOR LOOPLINE YANG BENAR
-        const waLink = 'https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~'; 
+  <!-- KONTAK & LOKASI (RAMAI & LENGKAP) -->
+  <section id="kontak" style="background: rgba(125, 211, 252, 0.1);">
+    <div class="section-wrapper" style="text-align: center;">
+      <h2 class="sec-title">Kontak & Lokasi</h2>
+      <p class="sec-sub">Lokasi utama di PNJ, Business Center. Klik tombol di bawah untuk info lengkap.</p>
+      
+      <!-- Container Tombol yang Lebih Ramai -->
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
         
-        document.getElementById('cta-button-mobile').addEventListener('click', function() {
-            scrollToSection('produk');
-        });
-        document.getElementById('cta-button-desktop').addEventListener('click', function() {
-            window.open(waLink, '_blank');
-        });
+        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://maps.app.goo.gl/rZmL5Djc3o2s8so9A">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Lokasi PNJ
+        </button>
+        
+        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #25D366; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://wa.me/6289525465737">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.654-.698c.93.513 1.933.784 2.808.784 3.168 0 5.765-2.596 5.765-5.772 0-3.172-2.585-5.763-5.767-5.765z"/></svg>
+          WhatsApp
+        </button>
 
-        // Event listener untuk tombol CTA di proses pemesanan (paling bawah)
-        document.querySelector('a[href^="https://wa.me/6289525465737?text=Hi%20kak!%20Aku%20lihat%20koleksi%20Bagcharm%20kamu%20lucu%20banget%20😍%20Aku%20mau%20tanya-tanya%20dulu%20ya%20soal%20model%20dan%20harganya~"]').href = waLink;
-    </script>
+        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #E1306C; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="https://www.instagram.com/loopline.charm">
+           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg>
+          Instagram
+        </button>
+
+        <button class="btn-card" style="width: auto; padding: 0.8rem 2rem; background: #1877F2; color: white; border: none; display: flex; align-items: center; gap: 0.5rem;" data-confirm data-url="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.35C0 23.41.59 24 1.325 24H12.82v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.33 0 2.47.1 2.8.15v3.24h-1.9c-1.5 0-1.8.72-1.8 1.77v2.3h3.59l-.47 3.62h-3.12V24h5.78c.74 0 1.33-.59 1.33-1.32V1.32C24 .59 23.41 0 22.675 0z"/></svg>
+          Facebook
+        </button>
+
+      </div>
+      
+      <p style="font-weight: 700; font-size: 1.1rem; color: var(--text-main);">
+        WA / Admin: <span style="color: var(--accent-pink);">0895-2546-5737</span>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid" style="justify-content: center; text-align: center;">
+      <div class="footer-brand">
+        <h2>LoopLine</h2>
+        <p style="max-width: 500px; margin: 0 auto;">Premium Handmade Bagcharm Creator. Menghadirkan kilauan estetik untuk setiap koleksi tas kesayanganmu.</p>
+        <div class="footer-socials" style="justify-content: center;">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.646-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163m0-1.602c-3.26 0-3.66.014-4.944.072C2.694.723.378 3.04.232 7.056.174 8.34.16 8.74.16 12s.014 3.66.072 4.944c.147 4.016 2.46 6.332 6.474 6.474 1.287.058 1.687.072 4.946.072s3.66-.014 4.944-.072c4.016-.147 6.332-2.46 6.474-6.474.058-1.287.072-1.687.072-4.946s-.014-3.66-.072-4.944C23.277 3.04 20.96 2.46 16.946.232C15.66.174 15.26.16 12 .16zm0 5.838a4.602 4.602 0 100 9.204 4.602 4.602 0 000-9.204zm0 7.503a2.902 2.902 0 110-5.804 2.902 2.902 0 010 5.804z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.59 0 0 .59 0 1.325v21.35C0 23.41.59 24 1.325 24H12.82v-9.29H9.69v-3.62h3.13V8.41c0-3.1 1.89-4.79 4.66-4.79 1.33 0 2.47.1 2.8.15v3.24h-1.9c-1.5 0-1.8.72-1.8 1.77v2.3h3.59l-.47 3.62h-3.12V24h5.78c.74 0 1.33-.59 1.33-1.32V1.32C24 .59 23.41 0 22.675 0z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LoopLine | Liquid Glass Edition</p>
+      <p>Made with 💗 at PNJ</p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal">
+      <h3>Konfirmasi</h3>
+      <p id="modalMsg">Lanjutkan ke WhatsApp untuk pemesanan?</p>
+      <div class="modal-btns">
+        <button class="btn-cancel" id="btnCancel">Batal</button>
+        <button class="btn-confirm" id="btnOk">Lanjut</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu Mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    menuToggle.onclick = () => navMenu.classList.toggle('show');
+
+    // Modal Handler
+    const modal = document.getElementById('confirmModal');
+    const btnCancel = document.getElementById('btnCancel');
+    const btnOk = document.getElementById('btnOk');
+    const modalMsg = document.getElementById('modalMsg');
+    let targetUrl = '';
+
+    document.addEventListener('click', (e) => {
+      const el = e.target.closest('[data-confirm]');
+      if (!el) return;
+      e.preventDefault();
+      targetUrl = el.getAttribute('data-url');
+      modalMsg.textContent = el.getAttribute('data-message') || 'Kamu akan diarahkan keluar dari website LoopLine. Lanjutkan?';
+      modal.style.display = 'flex';
+    });
+
+    btnCancel.onclick = () => modal.style.display = 'none';
+    btnOk.onclick = () => {
+      modal.style.display = 'none';
+      if (targetUrl) window.open(targetUrl, '_blank');
+    };
+    
+    window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; }
+  </script>
 </body>
 </html>
